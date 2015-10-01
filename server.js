@@ -6,6 +6,7 @@ var app = express();
 app.use(bodyParser.urlencoded());
 app.use(express.static(path.join(__dirname, "./client/static")));
 
+require('./server/config/mysql.js');
 require('./server/config/routes.js');
 
 var server = app.listen(8001, function() {
