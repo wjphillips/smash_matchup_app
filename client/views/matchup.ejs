@@ -8,11 +8,15 @@
 	<p><%= JSON.stringify(matchup_data[0]) %></p>
 	<div id="char_1_div">
 		<h2>Character 1</h2>
-		<h3><%= base_char_id %></h3>
+		<h3><%= matchup_data[0].char1_id %></h3>
+		<h3><%= matchup_data[0].char1_name %></h3>
+		<img src="<%= matchup_data[0].char1_image %>" height="100" width="100">
 	</div>
 	<div id="char_2_div">
 		<h2>Character 2</h2>
-		<h3><%= %></h3>
+		<h3><%= matchup_data[0].char2_id %></h3>
+		<h3><%= matchup_data[0].char2_name %></h3>
+		<img src="<%= matchup_data[0].char2_image %>" height="100" width="100">
 	</div>
 </body>
 </html>
