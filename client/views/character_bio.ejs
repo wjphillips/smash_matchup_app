@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= selected_character_id %> - Character Info</title>
+</head>
+<body>
+	<div id="characters_container">
+		<% 
+			for (i=0; i<characters.length; i++){
+				if(characters[i].id == selected_character_id){
+					%>
+					<div id="base_character">
+						<h1><%= characters[i].name %></h1>
+						<img src="<%= characters[i].image %>">
+					</div>
+					<%
+				}
+				else{
+					%><p><%= characters[i].name %></p><%
+				}
+			}
+		%>
+	</div>
+</body>
+</html>

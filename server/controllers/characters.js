@@ -7,32 +7,18 @@ var connection = mysql.createConnection({
 	database: 'smash_app'
 });
 
-// module.exports = (function() {
-// 	return {
-// 		get_all_character_names: connection.query('SELECT name FROM characters', function(err, rows) {
-// 			if (err) throw err;
-// 			return rows;
-// 		})
-// 	}
-// })();
-
 module.exports = {
 	return_all_characters: function(req, res) {
-		connection.query('SELECT * FROM characters', function(err, rows) {
+		connection.query('SELECT * FROM characters ORDER BY name ASC', function(err, rows) {
 			if (err) throw err;
-			var characters = rows;
-			res.render('characters', {characters: characters});
+			res.render('characters', {characters: rows});
 		})
 	},
-	return_hello_world: function() {
-		var phrase = "hello world";
-		return(phrase);
-	},
-	show: function(req, res) {
-		connection.query('SELECT * FROM characters WHERE id = ?', req.params.id, function(err, row) {
+	show_base_character: function(req, res) {
+		var selected_character_id = req.params.id;
+		connection.query('SELECT * FROM characters ORDER BY name ASC', function(err, rows) {
 			if (err) throw err;
-			console.log(row);
-			return(row);
+			res.render('base_character', {characters: rows, selected_character_id: selected_character_id});
 		})
 	}
 };

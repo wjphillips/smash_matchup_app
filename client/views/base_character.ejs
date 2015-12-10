@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Find and set the base_char value for the page from the characters array -->
+	<%
+		for (var i=0; i<characters.length; i++){
+			if(characters[i].id == selected_character_id){
+				var base_char = characters[i];
+				break;
+			};
+		};
+	%>
+	<title><%= base_char.name %> Match-Up Finder</title>
+</head>
+<body>
+	<div id="characters_container">
+		<div id="base_character">
+			<h1><%= base_char.name %></h1>
+			<img src="<%= base_char.image %>">
+		</div>
+		<div id="matchup_characters">
+		<%
+			for (i=0; i<characters.length; i++){
+				if(characters[i].id != base_char.id){
+					%>
+						<form action="/matchups" method="post" class="select_matchup_character">
+							<input type="hidden" name="base_char_id" value="<%= base_char.id %>">
+							<input type="hidden" name="base_char_name" value="<%= base_char.name %>">
+							<input type="hidden" name="matchup_char_id" value="<%= characters[i].id %>">
+							<input type="hidden" name="matchup_char_name" value="<%= characters[i].name %>">
+							<input type="image" name="submit" src="<%= characters[i].image %>" border="0" alt="Submit" height="50" width="50">
+						</form>
+					<%
+				};
+			};
+		%>
+		</div>
+	</div>
+</body>
+</html>
