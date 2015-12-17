@@ -8,6 +8,7 @@
     "path": "^0.12.7",
     "ejs": "^2.3.4",
     "bcrypt-nodejs": "^0.0.3",
-    "express-session": "^1.12.1"
+    "express-session": "^1.12.1",
+    "validator": "^4.4.0"
   }
 }

@@ -5,6 +5,11 @@
 </head>
 <body>
 	<h1>Please Register</h1>
+	<% if(errors != []) { %>
+		<% for(var i=0; i<errors.length; i++){ %>
+			<p class="error_message"><%= errors[i] %></p>
+		<% } %>
+	<% } %>
 	<form action="/users" method="post">
 		<input type="text" name="email" placeholder="E-mail Address">
 		<input type="text" name="first_name" placeholder="First Name">

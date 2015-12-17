@@ -7,7 +7,8 @@ module.exports = function(app) {
 		res.render("index");
 	});
 	app.get('/register', function(req, res) {
-		res.render("register");
+		var errors = [];
+		res.render("register", {errors: errors});
 	});
 	app.get('/characters', function(req, res) {
 		characters_controller.return_all_characters(req, res);
