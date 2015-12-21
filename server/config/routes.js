@@ -1,14 +1,20 @@
 var characters_controller = require('../controllers/characters.js');
 var matchups_controller = require('../controllers/matchups.js');
 var users_controller = require('../controllers/users.js');
+var sessions_controller = require('../controllers/sessions.js');
 
 module.exports = function(app) {
 	app.get('/', function(req, res) {
-		res.render("index");
+		var errors = [];
+		res.render("index", {errors: errors, session: req.session});
 	});
 	app.get('/register', function(req, res) {
 		var errors = [];
 		res.render("register", {errors: errors});
+	});
+	app.get('/login', function(req, res) {
+		var errors = [];
+		res.render("login", {errors: errors});
 	});
 	app.get('/characters', function(req, res) {
 		characters_controller.return_all_characters(req, res);
@@ -28,5 +34,11 @@ module.exports = function(app) {
 	});
 	app.post("/users", function(req, res) {
 		users_controller.create(req, res);
+	});
+	app.post("/sessions", function(req, res) {
+		sessions_controller.login(req, res);
+	});
+	app.get("/logout", function(req, res) {
+		sessions_controller.logout(req, res);
 	});
 };

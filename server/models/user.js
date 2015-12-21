@@ -9,9 +9,13 @@ var connection = mysql.createConnection({
 
 module.exports = {
 	addNew: function(req, res, userInfo) {
-		console.log("userInfo: " + userInfo);
-	},
-	findByAlias: function(req, res, alias) {
-		
+		connection.query('INSERT INTO users (first_name, last_name, email, hash, alias) VALUES (?, ?, ?, ?, ?)', [userInfo.first_name, userInfo.last_name, userInfo.email, userInfo.hash, userInfo.alias], function(err, rows) {
+			if(err){
+				console.log("There was an error.");
+			}
+			else{
+				console.log("User was created successfully.");
+			}
+		});
 	}
 };

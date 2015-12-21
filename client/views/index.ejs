@@ -4,8 +4,20 @@
 	<title>Super Smash Match-Ups - SSB for Wii U</title>
 </head>
 <body>
+	<p><%= JSON.stringify(session) %></p>
 	<h1>Super Smash Brothers Match-Up Discussion</h1>
+	<% if(errors != [] && errors != undefined) { %>
+		<% for(var i=0; i<errors.length; i++){ %>
+			<p class="error_message"><%= errors[i] %></p>
+		<% } %>
+	<% } %>
 	<a href="/characters">Character Select</a>
 	<a href="/register">Register</a>
+	<% if(session.user == undefined) { %>
+		<a href="/login">Log In</a>
+	<% }; %>
+	<% if(session.user != undefined) { %>
+		<a href="/logout">Log Out</a>
+	<% }; %>
 </body>
 </html>
