@@ -5,18 +5,48 @@
 </head>
 <body>
 	<h1>Single match-up page</h1>
-	<p><%= JSON.stringify(matchup_data[0]) %></p>
+	<% for(var i=0; i<matchup_data.length; i++){ %>
+		<p><%= JSON.stringify(matchup_data[i]) %></p>
+	<% }; %>
 	<div id="char_1_div">
 		<h2>Character 1</h2>
 		<h3><%= matchup_data[0].char1_id %></h3>
 		<h3><%= matchup_data[0].char1_name %></h3>
 		<img src="<%= matchup_data[0].char1_image %>" height="100" width="100">
+		<form action="/tips" method="post">
+			<input type="hidden" name="character_id" value="<%= matchup_data[0].char1_id %>">
+			<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
+			<textarea name="content" placeholder="Write a new tip for <%= matchup_data[0].char1_name %> players in this match-up..."></textarea>
+			<input type="submit" name="submit" value="Post Tip">
+		</form>
+		<% for(var i=0; i<matchup_data.length; i++){ %>
+			<% if(matchup_data[i].tip_character_id == matchup_data[0].char1_id){ %>
+				<div class="tip_div">
+					<p><%= matchup_data[i].tip_content %></p>
+					<h5>Submitted by <%= matchup_data[i].tip_user_alias %></h5>
+				</div>
+			<% }; %>
+		<% }; %>
 	</div>
 	<div id="char_2_div">
 		<h2>Character 2</h2>
 		<h3><%= matchup_data[0].char2_id %></h3>
 		<h3><%= matchup_data[0].char2_name %></h3>
 		<img src="<%= matchup_data[0].char2_image %>" height="100" width="100">
+		<form action="/tips" method="post">
+			<input type="hidden" name="character_id" value="<%= matchup_data[0].char2_id %>">
+			<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
+			<textarea name="content" placeholder="Write a new tip for <%= matchup_data[0].char2_name %> players in this match-up..."></textarea>
+			<input type="submit" name="submit" value="Post Tip">
+		</form>
+		<% for(var i=0; i<matchup_data.length; i++){ %>
+			<% if(matchup_data[i].tip_character_id == matchup_data[0].char2_id){ %>
+				<div class="tip_div">
+					<p><%= matchup_data[i].tip_content %></p>
+					<h5>Submitted by <%= matchup_data[i].tip_user_alias %></h5>
+				</div>
+			<% }; %>
+		<% }; %>
 	</div>
 </body>
 </html>
