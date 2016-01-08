@@ -2,10 +2,12 @@ var characters_controller = require('../controllers/characters.js');
 var matchups_controller = require('../controllers/matchups.js');
 var users_controller = require('../controllers/users.js');
 var sessions_controller = require('../controllers/sessions.js');
+var tips_controller = require('../controllers/tips.js');
 
 module.exports = function(app) {
 	app.get('/', function(req, res) {
 		var errors = [];
+		req.session.ip = req.ip;
 		res.render("index", {errors: errors, session: req.session});
 	});
 	app.get('/register', function(req, res) {
@@ -37,6 +39,12 @@ module.exports = function(app) {
 	});
 	app.post("/sessions", function(req, res) {
 		sessions_controller.login(req, res);
+	});
+	app.post("/tips", function(req, res) {
+		tips_controller.create(req, res);
+	});
+	app.post("/likes", function(req, res) {
+		tips_controller.like(req, res);
 	});
 	app.get("/logout", function(req, res) {
 		sessions_controller.logout(req, res);

@@ -34,14 +34,14 @@ module.exports = {
 				res.render('login', {errors: errors});
 			}
 			else{
-				console.log('Database returned: ' + row[0]);
 				//Check if password matches decrypted hash
 				var result = bcrypt.compareSync(req.body.password, row[0].hash);
 				if(result){
-					console.log('Login success!');
+					console.log('Login success! User IP: ' + req.ip);
 					var sess = req.session;
 					sess.login = true;
 					sess.user = row[0];
+					sess.user.ip = sess.ip;
 					res.redirect('/');
 				}
 				else{

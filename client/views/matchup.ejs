@@ -4,10 +4,8 @@
 	<title>Match-Up Discussion Page</title>
 </head>
 <body>
+	<p><%= JSON.stringify(session) %></p>
 	<h1>Single match-up page</h1>
-	<% for(var i=0; i<matchup_data.length; i++){ %>
-		<p><%= JSON.stringify(matchup_data[i]) %></p>
-	<% }; %>
 	<div id="char_1_div">
 		<h2>Character 1</h2>
 		<h3><%= matchup_data[0].char1_id %></h3>
@@ -16,6 +14,7 @@
 		<form action="/tips" method="post">
 			<input type="hidden" name="character_id" value="<%= matchup_data[0].char1_id %>">
 			<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
+			<input type="hidden" name="user_id" value="<%= session.user.id %>">
 			<textarea name="content" placeholder="Write a new tip for <%= matchup_data[0].char1_name %> players in this match-up..."></textarea>
 			<input type="submit" name="submit" value="Post Tip">
 		</form>
@@ -24,6 +23,13 @@
 				<div class="tip_div">
 					<p><%= matchup_data[i].tip_content %></p>
 					<h5>Submitted by <%= matchup_data[i].tip_user_alias %></h5>
+					<form action="/likes" method="post">
+						<input type="hidden" name="tip_id" value="<%= matchup_data[i].tip_id %>">
+						<input type="hidden" name="user_id" value="<%= session.user.id %>">
+						<input type="hidden" name="matchup_id" value="<%= matchup_data[i].matchup_id %>">
+						<input type="submit" value="Helpful!">
+					</form>
+					<p><%= matchup_data[i].vote_count %></p>
 				</div>
 			<% }; %>
 		<% }; %>
@@ -44,6 +50,13 @@
 				<div class="tip_div">
 					<p><%= matchup_data[i].tip_content %></p>
 					<h5>Submitted by <%= matchup_data[i].tip_user_alias %></h5>
+					<form action="/likes" method="post">
+						<input type="hidden" name="tip_id" value="<%= matchup_data[i].tip_id %>">
+						<input type="hidden" name="user_id" value="<%= session.user.id %>">
+						<input type="hidden" name="matchup_id" value="<%= matchup_data[i].matchup_id %>">
+						<input type="submit" value="Helpful!">
+					</form>
+					<p><%= matchup_data[i].vote_count %></p>
 				</div>
 			<% }; %>
 		<% }; %>
