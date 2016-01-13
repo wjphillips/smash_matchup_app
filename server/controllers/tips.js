@@ -21,7 +21,7 @@ module.exports = {
 	like: function(req, res){
 		console.log("New like requested.");
 		console.log(JSON.stringify(req.body));
-		connection.query('INSERT INTO likes (user_id, tip_id) VALUES (?, ?)', [req.body.user_id, req.body.tip_id], function(err) {
+		connection.query('INSERT INTO likes (user_id, tip_id) VALUES (?, ?)', [req.session.user.id, req.body.tip_id], function(err) {
 			if(err){
 				res.send("There was an error creating the like.");
 			}

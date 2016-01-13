@@ -6,6 +6,22 @@
 <body>
 	<p><%= JSON.stringify(session) %></p>
 	<h1>Single match-up page</h1>
+	<div id="vote_div">
+		<h2>Other factors equal, which character do you think wins this match-up?</h2>
+		<form action="/votes" method="post">
+			<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
+			<input type="hidden" name="character_id" value="<%= matchup_data[0].char1_id %>">
+			<input type="submit" value="<%= matchup_data[0].char1_name %>">
+		</form>
+		<form action="/votes" method="post">
+			<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
+			<input type="submit" value="Even match-up">
+		</form>
+		<form action="/votes" method="post">
+			<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
+			<input type="hidden" name="character_id" value="<%= matchup_data[0].char2_id %>">
+			<input type="submit" value="<%= matchup_data[0].char2_name %>">
+		</form>
 	<div id="char_1_div">
 		<h2>Character 1</h2>
 		<h3><%= matchup_data[0].char1_id %></h3>
@@ -14,7 +30,6 @@
 		<form action="/tips" method="post">
 			<input type="hidden" name="character_id" value="<%= matchup_data[0].char1_id %>">
 			<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
-			<input type="hidden" name="user_id" value="<%= session.user.id %>">
 			<textarea name="content" placeholder="Write a new tip for <%= matchup_data[0].char1_name %> players in this match-up..."></textarea>
 			<input type="submit" name="submit" value="Post Tip">
 		</form>
@@ -25,7 +40,6 @@
 					<h5>Submitted by <%= matchup_data[i].tip_user_alias %></h5>
 					<form action="/likes" method="post">
 						<input type="hidden" name="tip_id" value="<%= matchup_data[i].tip_id %>">
-						<input type="hidden" name="user_id" value="<%= session.user.id %>">
 						<input type="hidden" name="matchup_id" value="<%= matchup_data[i].matchup_id %>">
 						<input type="submit" value="Helpful!">
 					</form>
