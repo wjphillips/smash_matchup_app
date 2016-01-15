@@ -11,12 +11,12 @@
 			<p class="error_message"><%= errors[i] %></p>
 		<% } %>
 	<% } %>
-	<a href="/characters">Character Select</a>
-	<a href="/register">Register</a>
 	<% if(session.user == undefined) { %>
 		<a href="/login">Log In</a>
+		<a href="/register">Register</a>
 	<% }; %>
 	<% if(session.user != undefined) { %>
+		<a href="/characters">Character Select</a>
 		<a href="/logout">Log Out</a>
 	<% }; %>
 </body>

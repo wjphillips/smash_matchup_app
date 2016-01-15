@@ -5,7 +5,7 @@
 </head>
 <body>
 	<p><%= JSON.stringify(session) %></p>
-	<h1>Single match-up page</h1>
+	<h1><%= matchup_data[0].char1_name %> vs. <%= matchup_data[0].char2_name %></h1>
 	<div id="vote_div">
 		<h2>Other factors equal, which character do you think wins this match-up?</h2>
 		<form action="/votes" method="post">
@@ -15,13 +15,18 @@
 		</form>
 		<form action="/votes" method="post">
 			<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
-			<input type="submit" value="Even match-up">
+			<input type="submit" value="About Even">
 		</form>
 		<form action="/votes" method="post">
 			<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
 			<input type="hidden" name="character_id" value="<%= matchup_data[0].char2_id %>">
 			<input type="submit" value="<%= matchup_data[0].char2_name %>">
 		</form>
+		<h2>Results:</h2>
+		<p><%= matchup_data[0].char1_name %>: <%= (matchup_data[0].char1_vote_count/matchup_data[0].matchup_vote_total) * 100 %>%</p>
+		<p><%= matchup_data[0].char2_name %>: <%= (matchup_data[0].char2_vote_count/matchup_data[0].matchup_vote_total) * 100 %>%</p>
+		<p>Approximately Even: <%= ((matchup_data[0].matchup_vote_total - matchup_data[0].char2_vote_count - matchup_data[0].char1_vote_count)/matchup_data[0].matchup_vote_total) * 100 %>%</p>
+	</div>
 	<div id="char_1_div">
 		<h2>Character 1</h2>
 		<h3><%= matchup_data[0].char1_id %></h3>

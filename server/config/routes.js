@@ -46,6 +46,9 @@ module.exports = function(app) {
 	app.post("/likes", function(req, res) {
 		tips_controller.like(req, res);
 	});
+	app.post("/votes", function(req, res) {
+		matchups_controller.newVote(req, res);
+	});
 	app.get("/logout", function(req, res) {
 		sessions_controller.logout(req, res);
 	});
