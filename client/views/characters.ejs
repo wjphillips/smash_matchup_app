@@ -2,18 +2,20 @@
 <html>
 <head>
 	<title>SSB for Wii U - Character List</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/project.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/characters.css">
 </head>
 <body>
 	<h1>Super Smash Brothers Character List</h1>
 	<%
 		for(i=0; i<characters.length; i++){
 			%>
-				<a href="/characters/<%= characters[i].id %>">
-					<div class="char_box">
+				<div class="char_box">
+					<a href="/characters/<%= characters[i].id %>">
 						<img src="<%= characters[i].image %>" alt="<%= characters[i].name %>" height="75" width="75">
 						<p><%= characters[i].name %></p>
-					</div>
-				</a>
+					</a>
+				</div>
 			<%
 		}
 	%>

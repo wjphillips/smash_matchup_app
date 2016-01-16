@@ -2,83 +2,83 @@
 <html>
 <head>
 	<title>Match-Up Discussion Page</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/project.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/matchups.css">
 </head>
 <body>
-	<p><%= JSON.stringify(session) %></p>
-	<h1><%= matchup_data[0].char1_name %> vs. <%= matchup_data[0].char2_name %></h1>
-	<div id="vote_div">
-		<h2>Other factors equal, which character do you think wins this match-up?</h2>
-		<form action="/votes" method="post">
-			<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
-			<input type="hidden" name="character_id" value="<%= matchup_data[0].char1_id %>">
-			<input type="submit" value="<%= matchup_data[0].char1_name %>">
-		</form>
-		<form action="/votes" method="post">
-			<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
-			<input type="submit" value="About Even">
-		</form>
-		<form action="/votes" method="post">
-			<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
-			<input type="hidden" name="character_id" value="<%= matchup_data[0].char2_id %>">
-			<input type="submit" value="<%= matchup_data[0].char2_name %>">
-		</form>
-		<h2>Results:</h2>
-		<p><%= matchup_data[0].char1_name %>: <%= (matchup_data[0].char1_vote_count/matchup_data[0].matchup_vote_total) * 100 %>%</p>
-		<p><%= matchup_data[0].char2_name %>: <%= (matchup_data[0].char2_vote_count/matchup_data[0].matchup_vote_total) * 100 %>%</p>
-		<p>Approximately Even: <%= ((matchup_data[0].matchup_vote_total - matchup_data[0].char2_vote_count - matchup_data[0].char1_vote_count)/matchup_data[0].matchup_vote_total) * 100 %>%</p>
-	</div>
-	<div id="char_1_div">
-		<h2>Character 1</h2>
-		<h3><%= matchup_data[0].char1_id %></h3>
-		<h3><%= matchup_data[0].char1_name %></h3>
-		<img src="<%= matchup_data[0].char1_image %>" height="100" width="100">
-		<form action="/tips" method="post">
-			<input type="hidden" name="character_id" value="<%= matchup_data[0].char1_id %>">
-			<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
-			<textarea name="content" placeholder="Write a new tip for <%= matchup_data[0].char1_name %> players in this match-up..."></textarea>
-			<input type="submit" name="submit" value="Post Tip">
-		</form>
-		<% for(var i=0; i<matchup_data.length; i++){ %>
-			<% if(matchup_data[i].tip_character_id == matchup_data[0].char1_id){ %>
-				<div class="tip_div">
-					<p><%= matchup_data[i].tip_content %></p>
-					<h5>Submitted by <%= matchup_data[i].tip_user_alias %></h5>
-					<form action="/likes" method="post">
-						<input type="hidden" name="tip_id" value="<%= matchup_data[i].tip_id %>">
-						<input type="hidden" name="matchup_id" value="<%= matchup_data[i].matchup_id %>">
-						<input type="submit" value="Helpful!">
-					</form>
-					<p><%= matchup_data[i].vote_count %></p>
-				</div>
+	<div id="container">
+		<h1><%= matchup_data[0].char1_name %> vs. <%= matchup_data[0].char2_name %></h1>
+		<div id="vote_div">
+			<h2>Other factors equal, which character do you think wins this match-up?</h2>
+			<form action="/votes" method="post">
+				<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
+				<input type="hidden" name="character_id" value="<%= matchup_data[0].char1_id %>">
+				<input type="submit" class="submit_button" value="<%= matchup_data[0].char1_name %>">
+			</form>
+			<p><%= (matchup_data[0].char1_vote_count/matchup_data[0].matchup_vote_total) * 100 %>%</p>
+			<form action="/votes" method="post">
+				<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
+				<input type="hidden" name="character_id" value="<%= matchup_data[0].char2_id %>">
+				<input type="submit" class="submit_button" value="<%= matchup_data[0].char2_name %>">
+			</form>
+			<p><%= (matchup_data[0].char2_vote_count/matchup_data[0].matchup_vote_total) * 100 %>%</p>
+			<form action="/votes" method="post">
+				<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
+				<input type="submit" class="submit_button" value="About Even">
+			</form>
+			<p><%= ((matchup_data[0].matchup_vote_total - matchup_data[0].char2_vote_count - matchup_data[0].char1_vote_count)/matchup_data[0].matchup_vote_total) * 100 %>%</p>
+			<br>
+			<h4>Number of votes: <%= matchup_data[0].matchup_vote_total %></h4>
+		</div>
+		<div id="char_1_div" class="character_div">
+			<h2><%= matchup_data[0].char1_name %></h2>
+			<img src="<%= matchup_data[0].char1_image %>" height="100" width="100">
+			<form action="/tips" method="post" class="new_tip_form">
+				<input type="hidden" name="character_id" value="<%= matchup_data[0].char1_id %>">
+				<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
+				<textarea name="content" placeholder="Write a new tip for <%= matchup_data[0].char1_name %> players in this match-up..."></textarea>
+				<input type="submit" name="submit" class="submit_button" value="Post Tip">
+			</form>
+			<% for(var i=0; i<matchup_data.length; i++){ %>
+				<% if(matchup_data[i].tip_character_id == matchup_data[0].char1_id){ %>
+					<div class="tip_div">
+						<p><%= matchup_data[i].tip_content %></p>
+						<h5>Submitted by <%= matchup_data[i].tip_user_alias %></h5>
+						<form action="/likes" method="post">
+							<input type="hidden" name="tip_id" value="<%= matchup_data[i].tip_id %>">
+							<input type="hidden" name="matchup_id" value="<%= matchup_data[i].matchup_id %>">
+							<input type="submit" class="submit_button" value="Helpful!">
+						</form>
+						<p><%= matchup_data[i].like_count %></p>
+					</div>
+				<% }; %>
 			<% }; %>
-		<% }; %>
-	</div>
-	<div id="char_2_div">
-		<h2>Character 2</h2>
-		<h3><%= matchup_data[0].char2_id %></h3>
-		<h3><%= matchup_data[0].char2_name %></h3>
-		<img src="<%= matchup_data[0].char2_image %>" height="100" width="100">
-		<form action="/tips" method="post">
-			<input type="hidden" name="character_id" value="<%= matchup_data[0].char2_id %>">
-			<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
-			<textarea name="content" placeholder="Write a new tip for <%= matchup_data[0].char2_name %> players in this match-up..."></textarea>
-			<input type="submit" name="submit" value="Post Tip">
-		</form>
-		<% for(var i=0; i<matchup_data.length; i++){ %>
-			<% if(matchup_data[i].tip_character_id == matchup_data[0].char2_id){ %>
-				<div class="tip_div">
-					<p><%= matchup_data[i].tip_content %></p>
-					<h5>Submitted by <%= matchup_data[i].tip_user_alias %></h5>
-					<form action="/likes" method="post">
-						<input type="hidden" name="tip_id" value="<%= matchup_data[i].tip_id %>">
-						<input type="hidden" name="user_id" value="<%= session.user.id %>">
-						<input type="hidden" name="matchup_id" value="<%= matchup_data[i].matchup_id %>">
-						<input type="submit" value="Helpful!">
-					</form>
-					<p><%= matchup_data[i].vote_count %></p>
-				</div>
+		</div>
+		<div id="char_2_div" class="character_div">
+			<h2><%= matchup_data[0].char2_name %></h2>
+			<img src="<%= matchup_data[0].char2_image %>" height="100" width="100">
+			<form action="/tips" method="post" class="new_tip_form">
+				<input type="hidden" name="character_id" value="<%= matchup_data[0].char2_id %>">
+				<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
+				<textarea name="content" placeholder="Write a new tip for <%= matchup_data[0].char2_name %> players in this match-up..."></textarea>
+				<input type="submit" class="submit_button" name="submit" value="Post Tip">
+			</form>
+			<% for(var i=0; i<matchup_data.length; i++){ %>
+				<% if(matchup_data[i].tip_character_id == matchup_data[0].char2_id){ %>
+					<div class="tip_div">
+						<p><%= matchup_data[i].tip_content %></p>
+						<h5>Submitted by <%= matchup_data[i].tip_user_alias %></h5>
+						<form action="/likes" method="post">
+							<input type="hidden" name="tip_id" value="<%= matchup_data[i].tip_id %>">
+							<input type="hidden" name="user_id" value="<%= session.user.id %>">
+							<input type="hidden" name="matchup_id" value="<%= matchup_data[i].matchup_id %>">
+							<input type="submit" class="submit_button" value="Helpful!">
+						</form>
+						<p><%= matchup_data[i].like_count %></p>
+					</div>
+				<% }; %>
 			<% }; %>
-		<% }; %>
+		</div>
 	</div>
 </body>
 </html>

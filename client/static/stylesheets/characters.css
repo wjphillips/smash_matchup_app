@@ -1,0 +1,16 @@
+*{
+	background-color: lightgray;
+}
+.char_box{
+	display: inline-block;
+	margin: 10px;
+	width: 100px;
+	vertical-align: top;
+}
+.char_box p{
+	font-weight: bolder;
+}
+.char_box img{
+	background-color: white;
+	border: solid black 5px;
+}
