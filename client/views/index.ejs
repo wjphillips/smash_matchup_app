@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<% include partials/head.ejs %>
 	<title>Super Smash Match-Ups - SSB for Wii U</title>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/project.css">
 </head>
 <body>
-	<h1>Super Smash Brothers Match-Up Discussion</h1>
+	<% include partials/header.ejs %>
+	<h1>Home Page</h1>
 	<% if(errors != [] && errors != undefined) { %>
 		<% for(var i=0; i<errors.length; i++){ %>
 			<p class="error_message"><%= errors[i] %></p>
 		<% } %>
 	<% } %>
-	<% if(session.user == undefined) { %>
-		<a href="/login">Log In</a>
-		<a href="/register">Register</a>
-	<% }; %>
-	<% if(session.user != undefined) { %>
-		<a href="/characters">Character Select</a>
-		<a href="/logout">Log Out</a>
-	<% }; %>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<% include partials/head.ejs %>
 	<!-- Find and set the base_char value for the page from the characters array -->
 	<%
 		for (var i=0; i<characters.length; i++){
@@ -14,6 +15,7 @@
 	<title><%= base_char.name %> Match-Up Finder</title>
 </head>
 <body>
+	<% include partials/header.ejs %>
 	<div id="characters_container">
 		<div id="base_character">
 			<h1><%= base_char.name %></h1>

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<% include partials/head.ejs %>
 	<title>Match-Up Discussion Page</title>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/project.css">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/matchups.css">
 </head>
 <body>
+	<% include partials/header.ejs %>
 	<div id="container">
 		<h1><%= matchup_data[0].char1_name %> vs. <%= matchup_data[0].char2_name %></h1>
 		<div id="vote_div">

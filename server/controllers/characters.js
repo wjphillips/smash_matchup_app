@@ -11,14 +11,14 @@ module.exports = {
 	return_all_characters: function(req, res) {
 		connection.query('SELECT * FROM characters ORDER BY name ASC', function(err, rows) {
 			if (err) throw err;
-			res.render('characters', {characters: rows});
+			res.render('characters', {characters: rows, session: req.session});
 		})
 	},
 	show_base_character: function(req, res) {
 		var selected_character_id = req.params.id;
 		connection.query('SELECT * FROM characters ORDER BY name ASC', function(err, rows) {
 			if (err) throw err;
-			res.render('base_character', {characters: rows, selected_character_id: selected_character_id});
+			res.render('base_character', {characters: rows, selected_character_id: selected_character_id, session: req.session});
 		})
 	}
 };
