@@ -1,8 +1,9 @@
 #container{
 
 }
-h1{
-	margin: 10px 0px 25px 0px;
+#matchup_title{
+	margin: -16px 0px 0px 200px;
+	text-align: left;
 }
 img{
 	width: 200px;
@@ -15,6 +16,13 @@ textarea{
 	height: 75px;
 	overflow-y: scroll;
 	resize: none;
+}
+#vs{
+	color: red;
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 200%;
+	margin: 0px 40px;
+	vertical-align: -5px;
 }
 .submit_button{
 	padding: 2px 5px;

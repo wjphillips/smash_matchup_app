@@ -12,11 +12,11 @@ module.exports = function(app) {
 	});
 	app.get('/register', function(req, res) {
 		var errors = [];
-		res.render("register", {errors: errors});
+		res.render("register", {errors: errors, session: req.session});
 	});
 	app.get('/login', function(req, res) {
 		var errors = [];
-		res.render("login", {errors: errors});
+		res.render("login", {errors: errors, session: req.session});
 	});
 	app.get('/characters', function(req, res) {
 		characters_controller.return_all_characters(req, res);

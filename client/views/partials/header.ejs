@@ -1,6 +1,9 @@
 <div id="header_div">
 	<a href="/">
-		<h1>Super Smash Match-ups</h1>
+		<img src="/images/series_logo.png" alt="smash bros logo" id="header_logo">
+	</a>
+	<a href="/">
+		<h1><span id="span1">Super</span> <span id="span2">Smash</span> <span id="span3">Match-ups</span></h1>
 	</a>
 	<% if(session.user == undefined) { %>
 		<a href="/login">Log In</a>
@@ -9,6 +12,6 @@
 	<% if(session.user != undefined) { %>
 		<a href="/characters">Character Select</a>
 		<a href="/logout">Log Out</a>
-		<p>Current User: <%= session.user.alias %></p>
+		<p id="current_user">Current User: <%= session.user.alias %></p>
 	<% }; %>
 </div>

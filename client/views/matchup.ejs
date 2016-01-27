@@ -9,7 +9,7 @@
 <body>
 	<% include partials/header.ejs %>
 	<div id="container">
-		<h1><%= matchup_data[0].char1_name %> vs. <%= matchup_data[0].char2_name %></h1>
+		<h1 id="matchup_title"><%= matchup_data[0].char1_name %> <span id="vs">vs.</span> <%= matchup_data[0].char2_name %></h1>
 		<div id="vote_div">
 			<h2>Other factors equal, which character do you think wins this match-up?</h2>
 			<form action="/votes" method="post">
@@ -34,7 +34,7 @@
 		</div>
 		<div id="char_1_div" class="character_div">
 			<h2><%= matchup_data[0].char1_name %></h2>
-			<img src="<%= matchup_data[0].char1_image %>" height="100" width="100">
+			<img src="<%= matchup_data[0].char1_image %>" alt="character image 1" height="100" width="100">
 			<form action="/tips" method="post" class="new_tip_form">
 				<input type="hidden" name="character_id" value="<%= matchup_data[0].char1_id %>">
 				<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
@@ -58,7 +58,7 @@
 		</div>
 		<div id="char_2_div" class="character_div">
 			<h2><%= matchup_data[0].char2_name %></h2>
-			<img src="<%= matchup_data[0].char2_image %>" height="100" width="100">
+			<img src="<%= matchup_data[0].char2_image %>" alt="character image 2" height="100" width="100">
 			<form action="/tips" method="post" class="new_tip_form">
 				<input type="hidden" name="character_id" value="<%= matchup_data[0].char2_id %>">
 				<input type="hidden" name="matchup_id" value="<%= matchup_data[0].matchup_id %>">
