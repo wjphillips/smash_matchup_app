@@ -10,3 +10,7 @@ h1{
 h2{
 	font-family: "Arial Black", Gadget, sans-serif;
 }
+#container{
+	position: absolute;
+	margin-top: 125px;
+}
