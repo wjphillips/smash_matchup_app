@@ -7,11 +7,13 @@
 </head>
 <body>
 	<% include partials/header.ejs %>
-	<h1>Home Page</h1>
-	<% if(errors != [] && errors != undefined) { %>
-		<% for(var i=0; i<errors.length; i++){ %>
-			<p class="error_message"><%= errors[i] %></p>
+	<div id="page_content">
+		<h1>Home Page</h1>
+		<% if(errors != [] && errors != undefined) { %>
+			<% for(var i=0; i<errors.length; i++){ %>
+				<p class="error_message"><%= errors[i] %></p>
+			<% } %>
 		<% } %>
-	<% } %>
+	</div>
 </body>
 </html>

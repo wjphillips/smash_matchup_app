@@ -4,7 +4,6 @@
 	height: 100px;
 	text-align: left;
 	position: fixed;
-	z-index: 2;
 }
 #header_div *{
 	background-color: transparent;

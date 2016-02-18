@@ -7,20 +7,22 @@
 </head>
 <body>
 	<% include partials/header.ejs %>
-	<h1>Please Register</h1>
-	<% if(errors != []) { %>
-		<% for(var i=0; i<errors.length; i++){ %>
-			<p class="error_message"><%= errors[i] %></p>
+	<div id="page_content">
+		<h1>Please Register</h1>
+		<% if(errors != []) { %>
+			<% for(var i=0; i<errors.length; i++){ %>
+				<p class="error_message"><%= errors[i] %></p>
+			<% } %>
 		<% } %>
-	<% } %>
-	<form action="/users" method="post">
-		<input type="text" name="email" placeholder="E-mail Address">
-		<input type="text" name="first_name" placeholder="First Name">
-		<input type="text" name="last_name" placeholder="Last Name">
-		<input type="text" name="alias" placeholder="Alias (will be displayed with your posts)">
-		<input type="password" name="password" placeholder="Password">
-		<input type="password" name="password_conf" placeholder="Confirm Password">
-		<input type="submit" value="Register">
-	</form>
+		<form action="/users" method="post">
+			<input type="text" name="email" placeholder="E-mail Address">
+			<input type="text" name="first_name" placeholder="First Name">
+			<input type="text" name="last_name" placeholder="Last Name">
+			<input type="text" name="alias" placeholder="Alias (will be displayed with your posts)">
+			<input type="password" name="password" placeholder="Password">
+			<input type="password" name="password_conf" placeholder="Confirm Password">
+			<input type="submit" value="Register">
+		</form>
+	</div>
 </body>
 </html>

@@ -5,7 +5,8 @@
 	<link rel="stylesheet" type="text/css" href="/stylesheets/project.css">
 </head>
 <body>
-	<div id="characters_container">
+	<% include partials/header.ejs %>
+	<div id="page_content">
 		<% 
 			for (i=0; i<characters.length; i++){
 				if(characters[i].id == selected_character_id){
